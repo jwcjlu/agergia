@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="testing" type="com.rd.agergia.testing.entity.Testing" />
+
+	<resultMap id="result" class="testing">
+		<result property="id" column="id" jdbcType="NUMERIC" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+		<result property="status" column="status" jdbcType="BOOLEAN" />
+	</resultMap>
+	<select id="getTesting" resultMap="result" parameterClass="int">
+		SELECT
+		id,
+		name,
+		status
+		FROM
+		testing where id=#id#
+	</select>
+	<insert id="insertTesting" parameterClass="Testing">
+		INSERT INTO testing (name,status) VALUES
+		(#name#,#status#)
+	</insert>
+ <delete id="deleteTesting" parameterClass="int">
+   DELETE FROM testing WHERE id=#id#
+ </delete>
+
+</sqlMap>
