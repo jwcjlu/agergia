@@ -20,7 +20,7 @@ public class TestApp {
 	}
 	@Test
 	public void getTesting(){
-	System.out.println(testingDAO.find(2));
+	System.out.println(testingDAO.find(1));
 	}
 
 }
