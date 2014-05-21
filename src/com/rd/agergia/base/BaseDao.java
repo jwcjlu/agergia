@@ -11,7 +11,7 @@ public interface BaseDao<T> {
 	 * 增加实体内容
 	 * @param entity
 	 */
-	public void save(Object entity);
+	public void save(T obj);
 	/**
 	 * 根据实体id查找实体内容
 	 * @param classentity
@@ -23,7 +23,7 @@ public interface BaseDao<T> {
 	 * 修改实体内容
 	 * @param entity
 	 */
-	public void update(Object entity);
+	public void update(T obj);
 	/**
 	 * 根据id删除一个实体
 	 * @param entityId
