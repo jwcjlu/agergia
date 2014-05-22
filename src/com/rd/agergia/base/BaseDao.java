@@ -1,41 +1,41 @@
 package com.rd.agergia.base;
 
-import java.util.LinkedHashMap;
+import java.util.List;
 
-import com.rd.agergia.common.entity.QueryResult;
+import com.rd.agergia.common.entity.PagerParam;
 
 
 
 public interface BaseDao<T> {
 	/**
-	 * Ôö¼ÓÊµÌåÄÚÈİ
+	 *æ’å…¥ä¸€æ¡è®°å½•
 	 * @param entity
 	 */
 	public void save(T obj);
 	/**
-	 * ¸ù¾İÊµÌåid²éÕÒÊµÌåÄÚÈİ
+	 * æ ¹æ®idæŸ¥è¯¢ä¸€æ¡è®°å½•
 	 * @param classentity
 	 * @param entityId
 	 * @return
 	 */
-	public<T> T find(Class<T> entityClass,Object entityId);
+	public<T> T find(T obj,Object entityId);
 	/**
-	 * ĞŞ¸ÄÊµÌåÄÚÈİ
+	 * æ›´æ–°è®°å½•
 	 * @param entity
 	 */
 	public void update(T obj);
 	/**
-	 * ¸ù¾İidÉ¾³ıÒ»¸öÊµÌå
+	 * æ ¹æ®idåˆ é™¤æŒ‡å®šè®°å½•
 	 * @param entityId
 	 */
 	public <T>void delete(Class<T> entityClass,Object entityId);
 	/**
-	 * É¾³ı¶à¸öÊµÌå
+	 * æ‰¹é‡åˆ é™¤è®°å½•
 	 * @param entityIds
 	 */
 	public <T>void delete(Class<T> entityClass,Object []entityIds);
 	/**
-	 * ÓĞÅÅĞòµÄÓĞ¹ıÂËÌí¼ÓµÄ·ÖÒ³²éÑ¯
+	 * åˆ†é¡µæŸ¥è¯¢
 	 * @param entityClass
 	 * @param firstIndex
 	 * @param resultMax
@@ -44,44 +44,6 @@ public interface BaseDao<T> {
 	 * @param orderby
 	 * @return
 	 */
-	public<T> QueryResult<T> getPageingData(Class<T> entityClass,int firstIndex,
-			int resultMax,String wheresql,Object[]params,LinkedHashMap<String,String>orderby);
-	/**
-	 * ÓĞ¹ıÂËÌõ¼şµÄ·ÖÒ³²éÑ¯
-	 * @param entityClass
-	 * @param firstIndex
-	 * @param resultMax
-	 * @param wheresql
-	 * @param params
-	 * @return
-	 */
-	public<T> QueryResult<T> getPageingData(Class<T> entityClass,int firstIndex,
-			int resultMax,String wheresql,Object[]params);
+	public<T> List<T> getPageingData(Class<T> entityClass,PagerParam pp);
 
-	/**
-	 * ÓĞÅÅĞòµÄ·ÖÒ³²éÑ¯
-	 * @param entityClass
-	 * @param firstIndex
-	 * @param resultMax
-	 * @param orderby
-	 * @return
-	 */
-	public<T> QueryResult<T> getPageingData(Class<T> entityClass,int firstIndex,
-			int resultMax,LinkedHashMap<String,String>orderby);
-	/**
-	 * ·ÖÒ³²éÑ¯
-	 * @param entityClass
-	 * @param firstIndex
-	 * @param resultMax
-	 * @return
-	 */
-	public<T> QueryResult<T> getPageingData(Class<T> entityClass,int firstIndex,
-			int resultMax);
-	/**
-	 * ²éÑ¯ËùÓĞ¼ÇÂ¼
-	 * @param entityClass
-
-	 * @return
-	 */
-	public<T> QueryResult<T> getPageingData(Class<T> entityClass);
 }

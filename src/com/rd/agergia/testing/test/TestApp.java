@@ -9,18 +9,19 @@ import com.rd.agergia.testing.entity.Testing;
 
 public class TestApp {
 	ApplicationContext ac=new ClassPathXmlApplicationContext("classpath:/spring/applicationContext.xml");
-	TestingDAO testingDAO=(TestingDAO) ac.getBean("testingDAO");
+	TestingDAO testingDAO=(TestingDAO) ac.getBean("sqlMapTestingDAO");
 	@Test
 	public void testInsert(){
 		Testing t=new Testing();
-		t.setName("²âÊÔÄ£¿éÉóÅú22");
+		t.setName("æµ‹è¯•æ¨¡å—ä»Šå¤©111");
 		t.setStatus(false);
 		testingDAO.save(t);
 		
 	}
 	@Test
 	public void getTesting(){
-	System.out.println(testingDAO.find(1));
+		System.out.println(ac.getBean("sqlSessionFactory"));
+	System.out.println(testingDAO.find(new Testing(),2));
 	}
 
 }

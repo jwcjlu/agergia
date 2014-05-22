@@ -21,18 +21,7 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	<context:property-placeholder location="classpath:db.properties" />
 	<context:annotation-config />
 	<context:component-scan base-package="com.rd.agergia" />
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<!-- 创建SqlSessionFactory，同时指定数据源 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<!-- 添加注解驱动 -->
 
-	<!-- <bean/> definitions here -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver}" />
@@ -40,20 +29,28 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 		<property name="password" value="${jdbc.password}" />
 		<property name="url" value="${jdbc.url}" />
 	</bean>
-	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-		<property name="configLocation" value="classpath:sqlmap/testing-sqlmap-config.xml" />
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean id="testingDAO" class="com.rd.agergia.testing.dao.ibatis.SqlMapTestingDAO">
-		<property name="sqlMapClient" ref="sqlMapClient" />
+	<!-- 创建SqlSessionFactory，同时指定数据源 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:sqlmap/mybatis-config.xml"/>
 	</bean>
+	<!-- <bean/> definitions here -->
+
+	<!-- <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"> 
+		<property name="configLocation" value="classpath:sqlmap/testing-sqlmap-config.xml" 
+		/> <property name="dataSource" ref="dataSource" /> </bean> <bean id="testingDAO" 
+		class="com.rd.agergia.testing.dao.ibatis.SqlMapTestingDAO"> <property name="sqlMapClient" 
+		ref="sqlMapClient" /> </bean> -->
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.mapper" />
+		<property name="basePackage" value="com.rd.agergia" />
 	</bean>
 
-	<bean id="lalaMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.mapper.ILalaMapper" />
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	</bean>
+	<!-- <bean id="lalaMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+		<property name="mapperInterface" value="com.mapper.ILalaMapper" /> <property 
+		name="sqlSessionFactory" ref="sqlSessionFactory"></property> </bean> -->
 </beans>

@@ -1,13 +1,22 @@
 package com.rd.agergia.db.util;
 
-import org.apache.ibatis.session.SqlSession;
+import javax.annotation.Resource;
 
-public class MyBatisUtil {
-	public static SqlSession createSession(){
-		return null;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.support.SqlSessionDaoSupport;
+
+public class MyBatisUtil extends SqlSessionDaoSupport{
+	@Resource(name ="sqlSessionFactory")  
+    private  SqlSessionFactory sqlSessionFactory;
+	public  SqlSession createSession(){
+		SqlSession sqlSession=null;
+		sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false); 
+		return sqlSession;
 		
 	}
-	public static void closeSession(SqlSession session){
+	public  void closeSession(SqlSession session){
 		session.close();
 		
 	}
