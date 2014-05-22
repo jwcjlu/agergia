@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rd.agergia.testing.entity.Testing">
+	<insert id="add" parameterType="testing">
+		insert into testing (name,status) value
+		(#{name},#{status})
+	</insert>
+
+	<update id="update" parameterType="testing">
+		update testing set
+		name=#{name},status=#{status}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from testing where id=#{id}
+	</delete>
+	<select id="find" parameterType="int" resultType="testing">
+		select * from testing where id=#{id}
+	</select>
+</mapper>
