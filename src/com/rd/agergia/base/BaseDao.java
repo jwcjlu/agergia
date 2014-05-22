@@ -18,6 +18,7 @@ public interface BaseDao<T> {
 	 * @param entityId
 	 * @return
 	 */
+	@SuppressWarnings("hiding")
 	public<T> T find(T obj,Object entityId);
 	/**
 	 * 更新记录
@@ -28,11 +29,13 @@ public interface BaseDao<T> {
 	 * 根据id删除指定记录
 	 * @param entityId
 	 */
+	@SuppressWarnings("hiding")
 	public <T>void delete(Class<T> entityClass,Object entityId);
 	/**
 	 * 批量删除记录
 	 * @param entityIds
 	 */
+	@SuppressWarnings("hiding")
 	public <T>void delete(Class<T> entityClass,Object []entityIds);
 	/**
 	 * 分页查询
@@ -44,6 +47,7 @@ public interface BaseDao<T> {
 	 * @param orderby
 	 * @return
 	 */
+	@SuppressWarnings("hiding")
 	public<T> List<T> getPageingData(Class<T> entityClass,PagerParam pp);
 
 }

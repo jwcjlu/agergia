@@ -9,6 +9,21 @@ import java.lang.reflect.Method;
 import com.rd.agergia.testing.entity.Testing;
 
 public class DBUtil {
+	public static String getTableFromClass(Class clazz,String profix){
+		StringBuffer sb=new StringBuffer();
+		sb.append(profix.equals("")?clazz.getSimpleName().toLowerCase():profix+"_"+clazz.getSimpleName());
+		return sb.toString();
+		
+	}
+	public static String addUnderline(String tableName){
+		StringBuffer sb=new StringBuffer();
+		char [] chs=tableName.toCharArray();
+		for(char c:chs){
+			sb.append(Character.isLowerCase(c)?c:"_"+c);
+		}
+		return sb.toString();
+		
+	}
 	  public static String[] getFieldsFromClass(Class bean){
 		Field[] fs=  bean.getDeclaredFields();
 		String []fieldNames=new String[fs.length];
@@ -22,8 +37,8 @@ public class DBUtil {
 	      try {
 	    	   Class clazz = obj.getClass();
 	    	   PropertyDescriptor pd = new PropertyDescriptor(fieldName,clazz);
-	    	   Method getMethod = pd.getReadMethod();//获得get方法
-	    	            o = getMethod.invoke(obj);//执行get方法返回一个Object
+	    	   Method getMethod = pd.getReadMethod();
+	    	            o = getMethod.invoke(obj);
 	    	  } catch (SecurityException e) {
 	    	   e.printStackTrace();
 	    	  } catch (IllegalArgumentException e) {
@@ -46,8 +61,11 @@ public class DBUtil {
 		
 		Testing t=new Testing();
 		t.setId(1);
-		t.setName("测试模块");
+		t.setName("娴嬭瘯妯″潡鍚嶇О");
 		t.setStatus(false);
+		System.out.println(getTableFromClass(new Testing().getClass(),"dw"));
+		System.out.println(addUnderline("tableName"));
+		System.out.println(Testing.class.getSimpleName());
 		System.out.println("id="+execGetter(t,"id"));
 		
 	}

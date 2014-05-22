@@ -8,20 +8,29 @@ import com.rd.agergia.testing.dao.TestingDAO;
 import com.rd.agergia.testing.entity.Testing;
 
 public class TestApp {
-	ApplicationContext ac=new ClassPathXmlApplicationContext("classpath:/spring/applicationContext.xml");
-	TestingDAO testingDAO=(TestingDAO) ac.getBean("sqlMapTestingDAO");
+	ApplicationContext ac = new ClassPathXmlApplicationContext(
+			"classpath:/spring/applicationContext.xml");
+	TestingDAO testingDAO = (TestingDAO) ac.getBean("sqlMapTestingDAO");
+
 	@Test
-	public void testInsert(){
-		Testing t=new Testing();
+	public void testInsert() {
+		Testing t = new Testing();
 		t.setName("测试模块今天111");
 		t.setStatus(false);
 		testingDAO.save(t);
-		
+
 	}
+
 	@Test
-	public void getTesting(){
+	public void getTesting() {
 		System.out.println(ac.getBean("sqlSessionFactory"));
-	System.out.println(testingDAO.find(new Testing(),2));
+		System.out.println(testingDAO.find(new Testing(), 2));
+	}
+
+	@Test
+	public void deleteTesting() {
+		System.out.println(ac.getBean("sqlSessionFactory"));
+		testingDAO.delete(new Testing(), 2);
 	}
 
 }

@@ -6,5 +6,6 @@ public interface TestingDAO {
 	public void save(Testing t);
 
 	public Testing find(Testing t,int id);
+	public void delete(Testing t,int id);
 
 }

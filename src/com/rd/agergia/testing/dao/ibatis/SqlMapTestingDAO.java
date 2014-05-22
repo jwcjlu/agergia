@@ -22,5 +22,9 @@ public class SqlMapTestingDAO extends DaoSupport implements TestingDAO{
 		return (Testing) super.find(t, id);
 	
 	}
+	public void delete(Testing t,int id){
+		super.delete(t.getClass(), id);
+		
+	}
 
 }

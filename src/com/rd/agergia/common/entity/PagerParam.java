@@ -1,15 +1,11 @@
 package com.rd.agergia.common.entity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class PagerParam {
 	private int pageOffset;
 	private int pageSize;
-    private Map<String,String> order=new HashMap<String,String>();
-    private List<String>filter=new ArrayList<String>();
+	private String order;
+	private String sort;
 	public int getPageOffset() {
 		return pageOffset;
 	}
@@ -22,18 +18,19 @@ public class PagerParam {
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
-	public Map<String, String> getOrder() {
+	public String getOrder() {
 		return order;
 	}
-	public void setOrder(Map<String, String> order) {
+	public void setOrder(String order) {
 		this.order = order;
 	}
-	public List<String> getFilter() {
-		return filter;
+	public String getSort() {
+		return sort;
 	}
-	public void setFilter(List<String> filter) {
-		this.filter = filter;
+	public void setSort(String sort) {
+		this.sort = sort;
 	}
+
     
  
 

@@ -1,11 +1,9 @@
 package com.rd.agergia.base.support;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
@@ -47,7 +45,7 @@ public abstract class DaoSupport<T> implements BaseDao<T> {
 		try {
 			session = sqlSessionFactory.openSession();
 			// 约定 namespace值是该实体类的全路径,并且根据id查询都用find
-			obj = (T) session.selectOne(obj.getClass().getName() + ".find",
+			obj = (T) session.selectOne(obj.getClass().getName()+".find",
 					entityId);
 		} finally {
 			session.close();
@@ -72,20 +70,7 @@ public abstract class DaoSupport<T> implements BaseDao<T> {
 		}
 
 	}
-
-	public T load(String sqlId, Map<String, Object> params) {
-		SqlSession session = null;
-		T obj = null;
-		try {
-			session = sqlSessionFactory.openSession();
-			// 约定 namespace值是该实体类的全路径，并且所有的根据Id加载都是load
-			obj = (T) session.selectOne(sqlId, params);
-		} finally {
-			session.close();
-		}
-		return obj;
-	}
-
+	@SuppressWarnings("hiding")
 	@Override
 	public <T> void delete(Class<T> clazz, Object entityId) {
 		// TODO Auto-generated method stub
@@ -104,6 +89,7 @@ public abstract class DaoSupport<T> implements BaseDao<T> {
 
 	}
 
+	@SuppressWarnings("hiding")
 	@Override
 	public <T> void delete(Class<T> clazz, Object[] ids) {
 		// TODO Auto-generated method stub
@@ -115,6 +101,7 @@ public abstract class DaoSupport<T> implements BaseDao<T> {
 
 	}
 
+	@SuppressWarnings("hiding")
 	@Override
 	public <T> List<T> getPageingData(Class<T> entityClass, PagerParam pp) {
 		// TODO Auto-generated method stub

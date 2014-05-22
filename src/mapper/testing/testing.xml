@@ -19,4 +19,14 @@
 	<select id="find" parameterType="int" resultType="testing">
 		select * from testing where id=#{id}
 	</select>
+	<select id="pager" parameterType="map" resultType="Address">
+        select * from testing 
+         <if test="sort!=null">
+             order by ${sort}
+             <if test="order!=null">
+                 ${order}
+             </if>
+         </if>
+        limit #{pageOffset},#{pageSize}
+    </select>
 </mapper>
