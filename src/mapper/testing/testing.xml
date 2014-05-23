@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rd.agergia.testing.entity.Testing">
+  <resultMap id="result" type="testing">
+		<result property="id" column="id" jdbcType="NUMERIC" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+		<result property="status" column="status" jdbcType="BOOLEAN" />
+	</resultMap>
 	<insert id="add" parameterType="testing">
 		insert into testing (name,status) value
 		(#{name},#{status})
@@ -16,10 +20,10 @@
 	<delete id="delete" parameterType="int">
 		delete from testing where id=#{id}
 	</delete>
-	<select id="find" parameterType="int" resultType="testing">
+	<select id="find" parameterType="int" resultMap="result">
 		select * from testing where id=#{id}
 	</select>
-	<select id="pager" parameterType="map" resultType="Address">
+	<select id="page" parameterType="map" resultMap="result">
         select * from testing 
          <if test="sort!=null">
              order by ${sort}
@@ -27,6 +31,10 @@
                  ${order}
              </if>
          </if>
+        limit #{pageOffset},#{pageSize}
+    </select>
+    <select id="page_count" parameterType="map" resultType="int">
+        select count(*) from testing 
         limit #{pageOffset},#{pageSize}
     </select>
 </mapper>

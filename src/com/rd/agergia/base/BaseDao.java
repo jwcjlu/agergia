@@ -1,7 +1,9 @@
 package com.rd.agergia.base;
 
 import java.util.List;
+import java.util.Map;
 
+import com.rd.agergia.common.entity.Pager;
 import com.rd.agergia.common.entity.PagerParam;
 
 
@@ -47,7 +49,6 @@ public interface BaseDao<T> {
 	 * @param orderby
 	 * @return
 	 */
-	@SuppressWarnings("hiding")
-	public<T> List<T> getPageingData(Class<T> entityClass,PagerParam pp);
+	public Pager<T> getPageingData(Class<T> entityClass,PagerParam params);
 
 }

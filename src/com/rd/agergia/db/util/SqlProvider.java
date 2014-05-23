@@ -12,7 +12,8 @@ import static org.apache.ibatis.jdbc.SqlBuilder.WHERE;
 import com.rd.agergia.db.util.DBUtil;
 import com.rd.agergia.testing.entity.Testing;
 public class SqlProvider {
-    public static String getSql(Object obj,String profix) {
+    @SuppressWarnings("deprecation")
+	public static String getSql(Object obj,String profix) {
         BEGIN();
         //SELECT("id,title,authername,date,content");
         SELECT("*");
@@ -21,14 +22,16 @@ public class SqlProvider {
         WHERE("id = #{id}");
         return SQL();
     }
-    public static String getAllSql(Object obj,String profix) {
+    @SuppressWarnings("deprecation")
+	public static String getAllSql(Object obj,String profix) {
         BEGIN();
         SELECT("*");
         FROM(DBUtil.getTableFromClass(obj.getClass(), profix));
         return SQL();
     }
  
-    public static String insertSql(Object obj,String profix) {
+    @SuppressWarnings("deprecation")
+	public static String insertSql(Object obj,String profix) {
         BEGIN();
         INSERT_INTO(DBUtil.getTableFromClass(obj.getClass(), profix));
         String []tableNames=DBUtil.getFieldsFromClass(obj.getClass());
@@ -38,13 +41,15 @@ public class SqlProvider {
    
         return SQL();
     }
-    public static String deleteSql(Object obj,String profix) {
+    @SuppressWarnings("deprecation")
+	public static String deleteSql(Object obj,String profix) {
         BEGIN();
         DELETE_FROM(DBUtil.getTableFromClass(obj.getClass(), profix));
         WHERE("id = #{id}");
         return SQL();
     }
-    public static String updateSql(Object obj,String profix,String filter) {
+    @SuppressWarnings("deprecation")
+	public static String updateSql(Object obj,String profix,String filter) {
         BEGIN();
         UPDATE(DBUtil.getTableFromClass(obj.getClass(), profix));
         String []tableNames=DBUtil.getFieldsFromClass(obj.getClass());
